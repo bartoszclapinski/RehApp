@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using server.DbContexts;
+using server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +16,14 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddControllers();
+builder.Services.AddScoped<ITherapistsRepository, TherapistsRepository>();
 
 builder.Services.AddDbContext<RehAppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionDB"));
 });
+
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
