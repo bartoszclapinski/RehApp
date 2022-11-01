@@ -15,5 +15,10 @@ public class TherapistProfile : Profile
          *  Mapping therapist dto model to therapist entity
          */
         CreateMap<Models.Personal.TherapistDTO, Entities.Personal.Therapist>();
+
+        /*
+         * Mapping therapist for create dto to therapist entity
+         */
+        CreateMap<Models.Personal.TherapistForCreateDTO, Entities.Personal.Therapist>();
     }
 }

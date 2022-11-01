@@ -31,6 +31,7 @@ namespace server.Services
 
         public async Task AddNewTherapist(Therapist therapist)
         {
+            _context.Persons.Add(therapist.PersonalDetails);
             _context.Therapists.Add(therapist);
             await SaveChangesAsync();
         }
