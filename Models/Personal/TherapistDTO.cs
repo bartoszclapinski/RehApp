@@ -4,6 +4,7 @@ namespace server.Models.Personal
 {
     public class TherapistDTO
     {
-        public Person personalDetails { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
     }
 }

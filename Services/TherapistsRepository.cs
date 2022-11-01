@@ -26,7 +26,22 @@ namespace server.Services
          */
         public async Task<Therapist> GetTherapistByIdAsync(int id)
         {
-            return await _context.Therapists.Where(t => t.TherapistId == id).FirstOrDefaultAsync();
+            return await _context.Therapists.Where(t => t.TherapistId == id).FirstAsync();
+        }
+
+        public async Task AddNewTherapist(Therapist therapist)
+        {
+            _context.Therapists.Add(therapist);
+            await SaveChangesAsync();
+        }
+
+
+        /*
+         *  Save database changes
+         */
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() >= 0);
         }
     }
 }
