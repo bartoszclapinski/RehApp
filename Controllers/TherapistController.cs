@@ -50,7 +50,7 @@ namespace server.Controllers
         /// <param name="therapistToAdd"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<TherapistForCreateDTO>> AddNewTherapist (TherapistForCreateDTO therapistToAdd)
+        public async Task<ActionResult<TherapistDTO>> AddNewTherapist (TherapistForCreateDTO therapistToAdd)
         {
             var therapistEntity = new Therapist
             {
@@ -64,13 +64,7 @@ namespace server.Controllers
             await _repository.SaveChangesAsync();
             var therapistFinal = _mapper.Map<TherapistDTO>(therapistEntity);
 
-            return CreatedAtAction(nameof(GetTherapistById),
-                new
-                {
-                    TherapistId = therapistFinal.Id
-                },
-                therapistFinal
-            );
+            return Ok(therapistFinal);
         }
     }
 }
