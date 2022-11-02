@@ -11,9 +11,14 @@ namespace server.Services
         Task<Therapist> GetTherapistByIdAsync(int id);
         
         /*
-         *  Add methods
+         *  POST methods
          */
         Task AddNewTherapist(Therapist therapist);
+        
+        /*
+         *  PUT methods
+         */
+        Task<bool> TherapistExistsAsync(int id);
         
         Task<bool> SaveChangesAsync();
     }

@@ -5,6 +5,6 @@ namespace server.Models.Personal
     public class TherapistDTO
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
+        public Person personalDetails { get; set; }
     }
 }

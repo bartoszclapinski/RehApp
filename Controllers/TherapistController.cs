@@ -66,5 +66,22 @@ namespace server.Controllers
 
             return Ok(therapistFinal);
         }
+
+        [HttpPut("update-therapist-by-id/{id}")]
+        public async Task<ActionResult<TherapistDTO>> UpdateTherapist (int id, TherapistForCreateDTO therapistToUpdate)
+        {
+            if (!await _repository.TherapistExistsAsync(id))
+            {
+                return NotFound();
+            }
+
+            var therapistEntity = await _repository.GetTherapistByIdAsync(id);
+            _mapper.Map(therapistToUpdate, therapistEntity);
+            await _repository.SaveChangesAsync();
+            
+            therapistEntity = await _repository.GetTherapistByIdAsync(id);
+
+            return Ok(_mapper.Map<TherapistDTO>(therapistEntity));
+        }
     }
 }

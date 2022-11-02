@@ -28,14 +28,24 @@ namespace server.Services
         {
             return await _context.Therapists.Where(t => t.TherapistId == id).FirstAsync();
         }
-
+        
+        /*
+         *  Add new therapist async
+         */
         public async Task AddNewTherapist(Therapist therapist)
         {
             _context.Persons.Add(therapist.PersonalDetails);
             _context.Therapists.Add(therapist);
             await SaveChangesAsync();
         }
-
+        
+        /*
+         *  Checking if therapist with provided id exists in database
+         */
+        public async Task<bool> TherapistExistsAsync(int id)
+        {
+            return await _context.Therapists.AnyAsync(t => t.TherapistId == id);
+        }
 
         /*
          *  Save database changes
