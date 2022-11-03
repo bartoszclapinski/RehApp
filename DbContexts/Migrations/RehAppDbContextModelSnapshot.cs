@@ -21,7 +21,7 @@ namespace server.DbContexts.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("server.Entities.Personal.Person", b =>
+            modelBuilder.Entity("server.Entities.Personal.PersonalDetails", b =>
                 {
                     b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
@@ -52,28 +52,33 @@ namespace server.DbContexts.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TherapistId"), 1L, 1);
 
-                    b.Property<int>("PersonalDetailsPersonId")
+                    b.Property<string>("LicenseNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("PersonalDetailsId")
                         .HasColumnType("int");
 
                     b.HasKey("TherapistId");
 
-                    b.HasIndex("PersonalDetailsPersonId");
+                    b.HasIndex("PersonalDetailsId");
 
                     b.ToTable("Therapists");
                 });
 
             modelBuilder.Entity("server.Entities.Personal.Therapist", b =>
                 {
-                    b.HasOne("server.Entities.Personal.Person", "PersonalDetails")
+                    b.HasOne("server.Entities.Personal.PersonalDetails", "PersonalDetails")
                         .WithMany("Therapists")
-                        .HasForeignKey("PersonalDetailsPersonId")
+                        .HasForeignKey("PersonalDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PersonalDetails");
                 });
 
-            modelBuilder.Entity("server.Entities.Personal.Person", b =>
+            modelBuilder.Entity("server.Entities.Personal.PersonalDetails", b =>
                 {
                     b.Navigation("Therapists");
                 });

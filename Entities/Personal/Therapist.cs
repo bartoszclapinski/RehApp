@@ -8,9 +8,15 @@ namespace server.Entities.Personal
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TherapistId { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string LicenseNumber { get; set; }
         
         [Required]
-        public Person PersonalDetails { get; set; }
-
+        public PersonalDetails PersonalDetails { get; set; }
+        
+        [Required]
+        public int PersonalDetailsId { get; set; }
     }
 }

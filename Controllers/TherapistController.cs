@@ -28,8 +28,9 @@ namespace server.Controllers
         public async Task<ActionResult<IEnumerable<TherapistDTO>>> GetTherapistsAsync ()
         {
             var therapistEntities = await _repository.GetAllTherapistsAsync();
+            var mappedTherapists = _mapper.Map<IEnumerable<TherapistDTO>>(therapistEntities);
             
-            return Ok(_mapper.Map<IEnumerable<TherapistDTO>>(therapistEntities));
+            return Ok(mappedTherapists);
         }
         
         /// <summary>
@@ -54,7 +55,7 @@ namespace server.Controllers
         {
             var therapistEntity = new Therapist
             {
-                PersonalDetails = new Person
+                PersonalDetails = new PersonalDetails
                 {
                     FirstName = therapistToAdd.FirstName,
                     LastName = therapistToAdd.LastName

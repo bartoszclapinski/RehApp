@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace server.Entities.Personal
 {
-    public class Person
+    public class PersonalDetails
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

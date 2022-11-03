@@ -20,6 +20,10 @@ namespace server.Services
          */
         Task<bool> TherapistExistsAsync(int id);
         
+        
+        /*
+         *  Misc methods
+         */
         Task<bool> SaveChangesAsync();
     }
 }

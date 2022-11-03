@@ -18,7 +18,9 @@ namespace server.Services
          */
         public async Task<IEnumerable<Therapist>> GetAllTherapistsAsync()
         {
-            return await _context.Therapists.ToListAsync();
+            return await _context.Therapists
+                .Include(t => t.PersonalDetails)
+                .ToListAsync();
         }
 
         /*
@@ -26,7 +28,10 @@ namespace server.Services
          */
         public async Task<Therapist> GetTherapistByIdAsync(int id)
         {
-            return await _context.Therapists.Where(t => t.TherapistId == id).FirstAsync();
+            return await _context.Therapists
+                .Where(t => t.TherapistId == id)
+                .Include(p => p.PersonalDetails)
+                .FirstAsync();
         }
         
         /*
