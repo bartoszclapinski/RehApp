@@ -21,6 +21,44 @@ namespace server.DbContexts.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("server.Entities.Misc.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddressId"), 1L, 1);
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CityZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("StreetNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("AddressId");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("server.Entities.Personal.PersonalDetails", b =>
                 {
                     b.Property<int>("PersonId")
@@ -28,6 +66,9 @@ namespace server.DbContexts.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -40,6 +81,8 @@ namespace server.DbContexts.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("PersonId");
+
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Persons");
                 });
@@ -65,6 +108,17 @@ namespace server.DbContexts.Migrations
                     b.HasIndex("PersonalDetailsId");
 
                     b.ToTable("Therapists");
+                });
+
+            modelBuilder.Entity("server.Entities.Personal.PersonalDetails", b =>
+                {
+                    b.HasOne("server.Entities.Misc.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("server.Entities.Personal.Therapist", b =>

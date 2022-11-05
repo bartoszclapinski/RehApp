@@ -28,9 +28,8 @@ namespace server.Controllers
         public async Task<ActionResult<IEnumerable<TherapistDTO>>> GetTherapistsAsync ()
         {
             var therapistEntities = await _repository.GetAllTherapistsAsync();
-            var mappedTherapists = _mapper.Map<IEnumerable<TherapistDTO>>(therapistEntities);
-            
-            return Ok(mappedTherapists);
+
+            return Ok(_mapper.Map<IEnumerable<TherapistDTO>>(therapistEntities));
         }
         
         /// <summary>
@@ -53,19 +52,12 @@ namespace server.Controllers
         [HttpPost]
         public async Task<ActionResult<TherapistDTO>> AddNewTherapist (TherapistForCreateDTO therapistToAdd)
         {
-            var therapistEntity = new Therapist
-            {
-                PersonalDetails = new PersonalDetails
-                {
-                    FirstName = therapistToAdd.FirstName,
-                    LastName = therapistToAdd.LastName
-                }
-            };
+            var therapistEntity = _mapper.Map<Therapist>(therapistToAdd);
             await _repository.AddNewTherapist(therapistEntity);
             await _repository.SaveChangesAsync();
-            var therapistFinal = _mapper.Map<TherapistDTO>(therapistEntity);
+            var therapistToReturn = _mapper.Map<TherapistDTO>(therapistEntity);
 
-            return Ok(therapistFinal);
+            return Ok(therapistToReturn);
         }
 
         [HttpPut("update-therapist-by-id/{id}")]

@@ -9,23 +9,16 @@ public class TherapistProfile : Profile
     public TherapistProfile()
     {
         /*
-         *  Mapping therapist entity to therapist dto model
+         *  Mapping therapist entity and therapist dto model
          */
-        CreateMap<PersonalDetails, PersonalDetailsDTO>();
-        CreateMap<PersonalDetailsDTO, PersonalDetails>();
         CreateMap<Therapist, TherapistDTO>();
         CreateMap<TherapistDTO, Therapist>();
 
         /*
-         *  Mapping therapist dto model to therapist entity
-         */
-        //CreateMap<Models.Personal.TherapistDTO, Entities.Personal.Therapist>();
-
-        /*
-         * Mapping therapist for create dto to therapist entity
+         * Mapping therapist entity and therapist for create dto
          */
         CreateMap<TherapistForCreateDTO, Therapist>();
-        
-        
+        CreateMap<Therapist, TherapistForCreateDTO>();
+
     }
 }
