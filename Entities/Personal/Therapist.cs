@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using server.Entities.Corporations;
 using server.Entities.Misc;
 
 namespace server.Entities.Personal
@@ -11,6 +12,8 @@ namespace server.Entities.Personal
         
         public int PersonalDetailsId { get; set; }
         [Required] public PersonalDetails PersonalDetails { get; set; }
-        
+
+        public int CorporationId { get; set; }
+        public Corporation Corporation { get; set; }
     }
 }
