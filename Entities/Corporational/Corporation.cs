@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using server.Entities.Misc;
+using server.Entities.Personal;
 
 namespace server.Entities.Corporations;
 
@@ -12,4 +13,6 @@ public class Corporation
 
     public int AddressId { get; set; }
     [Required] public Address Address { get; set; }
+
+    public ICollection<Therapist> Therapists { get; set; }
 }
