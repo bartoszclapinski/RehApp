@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using server.Entities.Personal;
 
-namespace server.Entities.Personal;
+namespace server.Entities.Users;
 
 public class Patient
 {

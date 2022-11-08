@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using server.Entities.Corporations;
+using server.Entities.Corporational;
 using server.Models.Corporational;
 
 namespace server.Profiles.Corporational;

@@ -1,8 +1,9 @@
 ﻿using server.DbContexts;
-using server.Entities.Personal;
+using server.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using server.Entities.Corporational;
 
-namespace server.Services
+namespace server.Services.Users
 {
     public class TherapistsRepository : ITherapistsRepository
     {
@@ -19,7 +20,10 @@ namespace server.Services
         public async Task<IEnumerable<Therapist>> GetAllTherapistsAsync()
         {
             return await _context.Therapists
+                .Include(t => t.Corporation)
+                .ThenInclude(c => c.Address)
                 .Include(t => t.PersonalDetails)
+                .ThenInclude(p => p.Address)
                 .ToListAsync();
         }
 
@@ -30,15 +34,21 @@ namespace server.Services
         {
             return await _context.Therapists
                 .Where(t => t.TherapistId == id)
-                .Include(p => p.PersonalDetails)
+                .Include(t => t.Corporation)
+                .ThenInclude(c => c.Address)
+                .Include(t => t.PersonalDetails)
+                .ThenInclude(p => p.Address)
                 .FirstAsync();
         }
         
         /*
          *  Add new therapist async
          */
-        public async Task AddNewTherapist(Therapist therapist)
+        public async Task AddNewTherapist(Therapist therapist, int id)
         {
+            var therapistToAdd = therapist;
+            therapistToAdd.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == id);
+            therapistToAdd.CorporationId = id;
             _context.Persons.Add(therapist.PersonalDetails);
             _context.Therapists.Add(therapist);
             await SaveChangesAsync();
@@ -50,6 +60,14 @@ namespace server.Services
         public async Task<bool> TherapistExistsAsync(int id)
         {
             return await _context.Therapists.AnyAsync(t => t.TherapistId == id);
+        }
+        
+        /*
+         *  Get Corporation by id
+         */
+        public async Task<Corporation> GetCorporationByIdAsync(int id)
+        {
+            return await _context.Corporations.FirstAsync(c => c.CorporationId == id);
         }
 
         /*

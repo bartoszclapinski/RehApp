@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using server.Entities.Misc;
+using server.Entities.Users;
 
 namespace server.Entities.Personal
 {

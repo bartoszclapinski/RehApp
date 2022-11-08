@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using server.Entities.Misc;
 using server.Entities.Personal;
+using server.Entities.Users;
 
-namespace server.Entities.Corporations;
+namespace server.Entities.Corporational;
 
 public class Corporation
 {

@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using server.Entities.Personal;
 
-namespace server.Entities.Misc;
+namespace server.Entities.Personal;
 
 public class Address
 {

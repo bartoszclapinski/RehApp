@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using server.Entities.Personal;
-using Microsoft.Extensions.Configuration;
-using server.Entities.Corporations;
-using server.Entities.Misc;
-
+using server.Entities.Corporational;
+using server.Entities.Users;
 namespace server.DbContexts
 {
     public class RehAppDbContext : DbContext

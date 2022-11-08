@@ -1,5 +1,4 @@
-﻿using server.Entities.Misc;
-using server.Models.Misc;
+﻿using server.Models.Personal;
 
 namespace server.Models.Corporational;
 

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using server.Entities.Personal;
-using server.Models.Personal;
+using server.Entities.Users;
+using server.Models.Users;
 
-namespace server.Profiles.Personal;
+namespace server.Profiles.Users;
 
 public class TherapistProfile : Profile
 {

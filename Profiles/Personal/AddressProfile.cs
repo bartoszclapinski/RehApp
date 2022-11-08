@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using server.Entities.Misc;
-using server.Models.Misc;
+using server.Entities.Personal;
+using server.Models.Personal;
 
-namespace server.Profiles.Misc;
+namespace server.Profiles.Personal;
 
 public class AddressProfile : Profile
 {

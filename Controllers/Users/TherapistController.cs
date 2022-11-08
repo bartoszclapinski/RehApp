@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using server.Entities.Personal;
-using server.Models.Personal;
-using server.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using server.Services.Users;
 using AutoMapper;
+using server.Entities.Users;
+using server.Models.Users;
 
-namespace server.Controllers
+namespace server.Controllers.Users
 {
     [Route("api/persons/therapists")]
     [ApiController]
@@ -43,17 +42,19 @@ namespace server.Controllers
             var therapist = await _repository.GetTherapistByIdAsync(id);
             return Ok(_mapper.Map<TherapistDTO>(therapist));
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="therapistToAdd"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult<TherapistDTO>> AddNewTherapist (TherapistForCreateDTO therapistToAdd)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<TherapistDTO>> AddNewTherapist (TherapistForCreateDTO therapistToAdd, int id)
         {
+            
             var therapistEntity = _mapper.Map<Therapist>(therapistToAdd);
-            await _repository.AddNewTherapist(therapistEntity);
+            await _repository.AddNewTherapist(therapistEntity, id);
             await _repository.SaveChangesAsync();
             var therapistToReturn = _mapper.Map<TherapistDTO>(therapistEntity);
 
@@ -67,7 +68,7 @@ namespace server.Controllers
             {
                 return NotFound();
             }
-
+            
             var therapistEntity = await _repository.GetTherapistByIdAsync(id);
             _mapper.Map(therapistToUpdate, therapistEntity);
             await _repository.SaveChangesAsync();

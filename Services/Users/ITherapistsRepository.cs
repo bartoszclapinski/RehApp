@@ -1,6 +1,7 @@
-﻿using server.Entities.Personal;
+﻿using server.Entities.Corporational;
+using server.Entities.Users;
 
-namespace server.Services
+namespace server.Services.Users
 {
     public interface ITherapistsRepository
     {        
@@ -13,7 +14,7 @@ namespace server.Services
         /*
          *  POST methods
          */
-        Task AddNewTherapist(Therapist therapist);
+        Task AddNewTherapist(Therapist therapist, int id);
         
         /*
          *  PUT methods
@@ -25,5 +26,6 @@ namespace server.Services
          *  Misc methods
          */
         Task<bool> SaveChangesAsync();
+        Task<Corporation> GetCorporationByIdAsync(int id);
     }
 }

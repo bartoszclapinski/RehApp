@@ -1,8 +1,7 @@
-﻿using server.Entities.Corporations;
-using server.Entities.Personal;
-using server.Models.Corporational;
+﻿using server.Models.Corporational;
+using server.Models.Personal;
 
-namespace server.Models.Personal
+namespace server.Models.Users
 {
     public class TherapistDTO
     {

@@ -1,11 +1,9 @@
-﻿using server.Entities.Personal;
-using server.Models.Corporational;
+﻿using server.Models.Personal;
 
-namespace server.Models.Personal;
+namespace server.Models.Users;
 
 public class TherapistForCreateDTO {
 
     public PersonalDetailsForCreateDTO PersonalDetails { get; set; }
     public string LicenseNumber { get; set; }
-    public CorporationDTO Corporation { get; set; }
 }
