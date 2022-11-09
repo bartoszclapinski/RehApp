@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using server.DbContexts;
+using server.Services.Corporational;
 using server.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ITherapistsRepository, TherapistsRepository>();
+builder.Services.AddScoped<ICorporationRepository, CorporationRepository>();
 
 builder.Services.AddDbContext<RehAppDbContext>(options =>
 {

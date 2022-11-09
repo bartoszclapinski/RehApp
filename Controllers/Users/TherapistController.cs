@@ -77,5 +77,13 @@ namespace server.Controllers.Users
 
             return Ok(_mapper.Map<TherapistDTO>(therapistEntity));
         }
+
+        [HttpDelete("delete-therapist-by-id/{id}")]
+        public async Task<IActionResult> DeleteTherapistByIdAsync(int id)
+        {
+            await _repository.DeleteTherapistByIdAsync(id);
+            await _repository.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

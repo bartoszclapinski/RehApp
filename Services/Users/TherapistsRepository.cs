@@ -61,13 +61,30 @@ namespace server.Services.Users
         {
             return await _context.Therapists.AnyAsync(t => t.TherapistId == id);
         }
-        
+
         /*
          *  Get Corporation by id
          */
         public async Task<Corporation> GetCorporationByIdAsync(int id)
         {
             return await _context.Corporations.FirstAsync(c => c.CorporationId == id);
+        }
+        
+        /*
+         *  Delete therapist by id 
+         */
+        public async Task DeleteTherapistByIdAsync(int id)
+        {
+            var therapistToRemove = await _context.Therapists
+                .Where(t => t.TherapistId == id)
+                .Include(t => t.PersonalDetails)
+                .ThenInclude(p => p.Address)
+                .FirstAsync();
+
+            _context.Addresses.Remove(therapistToRemove.PersonalDetails.Address);
+            _context.Persons.Remove(therapistToRemove.PersonalDetails);
+            _context.Therapists.Remove(therapistToRemove);
+            await _context.SaveChangesAsync();
         }
 
         /*

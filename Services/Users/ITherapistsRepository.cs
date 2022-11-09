@@ -21,6 +21,10 @@ namespace server.Services.Users
          */
         Task<bool> TherapistExistsAsync(int id);
         
+        /*
+         *  DELETE methods
+         */
+        Task DeleteTherapistByIdAsync(int id);
         
         /*
          *  Misc methods

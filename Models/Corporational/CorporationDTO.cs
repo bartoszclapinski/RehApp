@@ -1,4 +1,6 @@
-﻿using server.Models.Personal;
+﻿using server.Entities.Users;
+using server.Models.Personal;
+using server.Models.Users;
 
 namespace server.Models.Corporational;
 

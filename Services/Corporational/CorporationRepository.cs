@@ -33,7 +33,7 @@ public class CorporationRepository : ICorporationRepository
             .FirstAsync();
     }
 
-    public async Task AddNewCorporation(Corporation corporation)
+    public async Task AddNewCorporation(Corporation corporation) 
     {
         _context.Corporations.Add(corporation);
         await _context.SaveChangesAsync();
