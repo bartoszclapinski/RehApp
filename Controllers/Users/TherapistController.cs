@@ -82,7 +82,6 @@ namespace server.Controllers.Users
         public async Task<IActionResult> DeleteTherapistByIdAsync(int id)
         {
             await _repository.DeleteTherapistByIdAsync(id);
-            await _repository.SaveChangesAsync();
             return Ok();
         }
     }

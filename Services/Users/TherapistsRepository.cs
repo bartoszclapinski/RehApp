@@ -81,8 +81,6 @@ namespace server.Services.Users
                 .ThenInclude(p => p.Address)
                 .FirstAsync();
 
-            _context.Addresses.Remove(therapistToRemove.PersonalDetails.Address);
-            _context.Persons.Remove(therapistToRemove.PersonalDetails);
             _context.Therapists.Remove(therapistToRemove);
             await _context.SaveChangesAsync();
         }
