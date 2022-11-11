@@ -9,7 +9,7 @@ namespace server.Entities.Personal
         [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int PersonId { get; set; }
         [Required] [MaxLength(50)] public string FirstName { get; set; } = string.Empty;
         [Required] [MaxLength(50)] public string LastName { get; set; } = string.Empty;
-        [Required] [MaxLength(9)] public string NationalNumber { get; set; }
+        [Required] [MaxLength(9)] public string NationalNumber { get; set; } = string.Empty;
 
         public int AddressId { get; set; }
         [Required] public Address Address { get; set; }
