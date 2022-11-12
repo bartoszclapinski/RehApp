@@ -7,7 +7,6 @@ namespace server.Services.Corporational;
 public class CorporationRepository : ICorporationRepository
 {
     private readonly RehAppDbContext _context;
-    private ICorporationRepository _corporationRepositoryImplementation;
 
     public CorporationRepository(RehAppDbContext context)
     {
