@@ -62,7 +62,7 @@ namespace server.Controllers.Users
         }
 
         [HttpPut("update-therapist-by-id/{id}")]
-        public async Task<ActionResult<TherapistDTO>> UpdateTherapist (int id, TherapistForCreateDTO therapistToUpdate)
+        public async Task<ActionResult<TherapistDTO>> UpdateTherapistById (int id, TherapistForCreateDTO therapistToUpdate)
         {
             if (!await _repository.TherapistExistsAsync(id))
             {
@@ -72,14 +72,12 @@ namespace server.Controllers.Users
             var therapistEntity = await _repository.GetTherapistByIdAsync(id);
             _mapper.Map(therapistToUpdate, therapistEntity);
             await _repository.SaveChangesAsync();
-            
-            therapistEntity = await _repository.GetTherapistByIdAsync(id);
 
             return Ok(_mapper.Map<TherapistDTO>(therapistEntity));
         }
 
         [HttpDelete("delete-therapist-by-id/{id}")]
-        public async Task<IActionResult> DeleteTherapistByIdAsync(int id)
+        public async Task<IActionResult> DeleteTherapistById(int id)
         {
             await _repository.DeleteTherapistByIdAsync(id);
             return Ok();

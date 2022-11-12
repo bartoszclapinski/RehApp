@@ -7,6 +7,7 @@ namespace server.Services.Corporational;
 public class CorporationRepository : ICorporationRepository
 {
     private readonly RehAppDbContext _context;
+    private ICorporationRepository _corporationRepositoryImplementation;
 
     public CorporationRepository(RehAppDbContext context)
     {
@@ -37,5 +38,15 @@ public class CorporationRepository : ICorporationRepository
     {
         _context.Corporations.Add(corporation);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> CorporationExistsAsync(int id)
+    {
+        return await _context.Corporations.AnyAsync(c => c.CorporationId == id);
+    }
+
+    public async Task<bool> SaveChangesAsync()
+    {
+        return (await _context.SaveChangesAsync() >= 0);
     }
 }

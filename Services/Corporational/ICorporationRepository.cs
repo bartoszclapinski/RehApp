@@ -15,5 +15,13 @@ public interface ICorporationRepository
      */
     Task AddNewCorporation(Corporation corporation);
 
+    /*
+     *  PUT methods
+     */
+    Task<bool> CorporationExistsAsync(int id);
     
+    /*
+     *  MISC methods
+     */
+    Task<bool> SaveChangesAsync();
 }
