@@ -23,4 +23,20 @@ public class PatientRepository : IPatientRepository
             .Include(p => p.Therapist)
             .ToListAsync();
     }
+
+    public async Task<Patient> GetPatientByIdAsync(int id)
+    {
+        return await _context.Patients
+            .Include(p => p.PersonalDetails)
+            .ThenInclude(pd => pd.Address)
+            .Include(p => p.Corporation)
+            .ThenInclude(c => c.Address)
+            .Include(p => p.Therapist)
+            .FirstAsync();
+    }
+
+    public async Task<bool> PatientExistsAsync(int id)
+    {
+        return (await _context.Patients.AnyAsync(p => p.PatientId == id));
+    }
 }

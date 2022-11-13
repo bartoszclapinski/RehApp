@@ -8,4 +8,10 @@ public interface IPatientRepository
      *  GET methods
      */
     public Task<IEnumerable<Patient>> GetAllPatientsAsync();
+    public Task<Patient> GetPatientByIdAsync(int id);
+    
+    /*
+     *  MISC methods
+     */
+    public Task<bool> PatientExistsAsync(int id);
 }

@@ -6,7 +6,7 @@ using server.Models.Users;
 
 namespace server.Controllers.Users
 {
-    [Route("api/persons/therapists")]
+    [Route("api/users/therapists")]
     [ApiController]
     public class TherapistController : ControllerBase
     {

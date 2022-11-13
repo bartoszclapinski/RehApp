@@ -21,6 +21,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ITherapistsRepository, TherapistsRepository>();
 builder.Services.AddScoped<ICorporationRepository, CorporationRepository>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 builder.Services.AddDbContext<RehAppDbContext>(options =>
 {
