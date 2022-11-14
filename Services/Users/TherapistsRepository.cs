@@ -46,9 +46,8 @@ namespace server.Services.Users
          */
         public async Task AddNewTherapist(Therapist therapist, int id)
         {
-            var therapistToAdd = therapist;
-            therapistToAdd.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == id);
-            therapistToAdd.CorporationId = id;
+            therapist.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == id);
+            therapist.CorporationId = id;
             _context.Persons.Add(therapist.PersonalDetails);
             _context.Therapists.Add(therapist);
             await SaveChangesAsync();

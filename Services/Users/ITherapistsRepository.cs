@@ -14,7 +14,7 @@ namespace server.Services.Users
         /*
          *  POST methods
          */
-        Task AddNewTherapist(Therapist therapist, int id);
+        Task AddNewTherapist(Therapist therapist, int corporationId);
         
         /*
          *  PUT methods

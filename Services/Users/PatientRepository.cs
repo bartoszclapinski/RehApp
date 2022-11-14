@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.DbContexts;
 using server.Entities.Users;
 
@@ -33,6 +34,15 @@ public class PatientRepository : IPatientRepository
             .ThenInclude(c => c.Address)
             .Include(p => p.Therapist)
             .FirstAsync();
+    }
+
+    public async Task AddNewPatientAsync(Patient patient, int corporationId)
+    {
+        patient.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == corporationId);
+        patient.CorporationId = corporationId;
+        _context.Persons.Add(patient.PersonalDetails);
+        _context.Patients.Add(patient);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<bool> PatientExistsAsync(int id)
