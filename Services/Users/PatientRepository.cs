@@ -38,9 +38,9 @@ public class PatientRepository : IPatientRepository
 
     public async Task AddNewPatientAsync(Patient patient, int corporationId)
     {
-        patient.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == corporationId);
+        patient.Corporation = await _context.Corporations
+            .FirstAsync(c => c.CorporationId == corporationId);
         patient.CorporationId = corporationId;
-        _context.Persons.Add(patient.PersonalDetails);
         _context.Patients.Add(patient);
         await _context.SaveChangesAsync();
     }

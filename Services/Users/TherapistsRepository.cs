@@ -48,7 +48,6 @@ namespace server.Services.Users
         {
             therapist.Corporation = await _context.Corporations.FirstAsync(c => c.CorporationId == id);
             therapist.CorporationId = id;
-            _context.Persons.Add(therapist.PersonalDetails);
             _context.Therapists.Add(therapist);
             await SaveChangesAsync();
         }

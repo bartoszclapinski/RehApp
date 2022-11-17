@@ -16,6 +16,7 @@ public interface IPatientRepository
      */
     Task AddNewPatientAsync (Patient patient, int corporationId);
 
+
     /*
      *  MISC methods
      */
